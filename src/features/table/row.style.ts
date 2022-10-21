@@ -7,5 +7,5 @@ export const root: CSS.Properties = {
 }
 
 export const odd: CSS.Properties = {
-  backgroundColor: Color.Primary100
+  backgroundColor: Color.Primary300
 }

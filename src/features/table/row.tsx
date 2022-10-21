@@ -8,7 +8,7 @@ export interface RowProps {
 }
 
 export const Row: React.FC<RowProps> = ({ rowNumber, data }: RowProps) => (
-  <div style={{ ...root, ...(rowNumber % 2 > 0 ? odd : null) }}>
+  <div style={{ ...root, ...(rowNumber % 2 > 0 && odd) }}>
     <Cell>{data.date}</Cell>
     <Cell>{data.name}</Cell>
     <Cell>{data.quantity}</Cell>

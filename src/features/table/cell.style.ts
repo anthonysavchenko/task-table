@@ -1,5 +1,7 @@
 import CSS from 'csstype'
 
+import { Color } from '../../constants'
+
 export const root: CSS.Properties = {
   flex: 1,
   padding: '6px 10px',
@@ -8,5 +10,6 @@ export const root: CSS.Properties = {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
 
-  textAlign: 'center'
+  textAlign: 'center',
+  color: Color.Primary100
 }

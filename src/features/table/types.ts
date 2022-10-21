@@ -5,3 +5,5 @@ export interface DataRow {
   quantity: number
   distance: number
 }
+
+export type OrderBy = 'ascending' | 'descending'
