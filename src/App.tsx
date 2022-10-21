@@ -1,12 +1,12 @@
 import React from 'react'
-import './app.css'
+
+import { root } from './app.style'
+import { Table } from './features/table'
 
 const App: React.FC = () => (
-  <div className="root">
-    <main className="table">
-      <p>Table goes here</p>
-    </main>
-  </div>
+  <main style={root}>
+    <Table />
+  </main>
 )
 
 export default App
