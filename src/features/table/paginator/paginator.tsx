@@ -6,17 +6,17 @@ import { root, separator } from './paginator.style'
 export interface PaginatorProps {
   page: number
   pageQuantity: number
-  onPageClick(page: number): void
-  onPrevClick(): void
-  onNextClick(): void
+  onPageSelect(page: number): void
+  onPrevPage(): void
+  onNextPage(): void
 }
 
 export const Paginator: React.FC<PaginatorProps> = ({
   page,
   pageQuantity,
-  onPageClick,
-  onPrevClick,
-  onNextClick
+  onPageSelect,
+  onPrevPage,
+  onNextPage
 }) => {
   const pageButtons: React.ReactNode[] = []
   const pagesNearActive = 2
@@ -35,7 +35,7 @@ export const Paginator: React.FC<PaginatorProps> = ({
           key={i}
           pageNumber={i}
           isActive={i === page}
-          onClick={onPageClick}
+          onClick={onPageSelect}
         >
           {i}
         </Button>
@@ -51,9 +51,9 @@ export const Paginator: React.FC<PaginatorProps> = ({
 
   return (
     <div style={root}>
-      {page !== 1 && <Button onClick={onPrevClick}>←</Button>}
+      {page !== 1 && <Button onClick={onPrevPage}>←</Button>}
       {pageButtons}
-      {page !== pageQuantity && <Button onClick={onNextClick}>→</Button>}
+      {page !== pageQuantity && <Button onClick={onNextPage}>→</Button>}
     </div>
   )
 }

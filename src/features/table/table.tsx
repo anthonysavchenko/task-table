@@ -1,29 +1,35 @@
 import React from 'react'
 
-import { data } from './constants'
+import { rows } from './constants'
 import { Header } from './header'
+import { usePagination, useSorting } from './hooks'
 import { Paginator } from './paginator'
 import { Row } from './row'
 import { root } from './table.style'
-import { OrderBy } from './types'
 
 export interface TableProps {
   rowsPerPage?: number
 }
 
 export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
-  const [orderByName, handleOrderByName] = useOrderBy()
-  const [orderByQuantity, handleOrderByQuantity] = useOrderBy()
-  const [orderByDistance, handleOrderByDistance] = useOrderBy()
+  const [
+    sortedRows,
+    orderByName,
+    orderByQuantity,
+    orderByDistance,
+    handleOrderByName,
+    handleOrderByQuantity,
+    handleOrderByDistance
+  ] = useSorting(rows)
 
-  const pageQuantity = Math.ceil(
-    data.length / (rowsPerPage && rowsPerPage >= 1 ? rowsPerPage : 1)
-  )
-  const [page, setPage] = React.useState(1)
-  const handlePageClick = (page: number) => setPage(page)
-  const handleNextClick = () =>
-    setPage(prev => (page === pageQuantity ? prev : prev + 1))
-  const handlePrevClick = () => setPage(prev => (page === 1 ? prev : prev - 1))
+  const [
+    page,
+    pageQuantity,
+    pageRows,
+    handlePageSelect,
+    handleNextPage,
+    handlePrevPage
+  ] = usePagination(sortedRows, rowsPerPage)
 
   return (
     <section style={root}>
@@ -35,37 +41,16 @@ export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
         onOrderByQuantity={handleOrderByQuantity}
         onOrderByDistance={handleOrderByDistance}
       />
-      {data.map((x, index) => (
+      {pageRows.map((x, index) => (
         <Row key={x.id} rowNumber={index + 1} data={x} />
       ))}
       <Paginator
         page={page}
         pageQuantity={pageQuantity}
-        onPageClick={handlePageClick}
-        onNextClick={handleNextClick}
-        onPrevClick={handlePrevClick}
+        onPageSelect={handlePageSelect}
+        onNextPage={handleNextPage}
+        onPrevPage={handlePrevPage}
       />
     </section>
   )
-}
-
-const useOrderBy = () => {
-  const [orderBy, setOrderBy] = React.useState<OrderBy | undefined>()
-  const handleOrderBy = React.useCallback(
-    () => setOrderBy(order => toggleOrderBy(order)),
-    []
-  )
-
-  return [orderBy, handleOrderBy] as const
-}
-
-const toggleOrderBy = (orderBy?: OrderBy): OrderBy | undefined => {
-  switch (orderBy) {
-    case 'ascending':
-      return 'descending'
-    case 'descending':
-      return
-    default:
-      return 'ascending'
-  }
 }

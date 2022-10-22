@@ -1,25 +1,25 @@
 import { DataRow } from './types'
 
-export const data: DataRow[] = [
+export const rows: DataRow[] = [
   {
     id: 1,
     date: new Date().toLocaleDateString(),
     name: 'New York',
-    quantity: 1,
-    distance: 1000
+    quantity: 11,
+    distance: 1200
   },
   {
     id: 2,
     date: new Date(2001, 1, 5).toLocaleDateString(),
     name: 'Washington DC the capital of the United States of America',
-    quantity: 5,
+    quantity: 50,
     distance: 150
   },
   {
     id: 3,
     date: new Date(2013, 7, 21).toLocaleDateString(),
     name: 'Los Angeles',
-    quantity: 100,
+    quantity: 110,
     distance: 2000
   },
   {
@@ -41,8 +41,8 @@ export const data: DataRow[] = [
     id: 6,
     date: new Date().toLocaleDateString(),
     name: 'New York',
-    quantity: 1,
-    distance: 1000
+    quantity: 14,
+    distance: 500
   },
   {
     id: 7,
@@ -55,7 +55,7 @@ export const data: DataRow[] = [
     id: 8,
     date: new Date(2013, 7, 21).toLocaleDateString(),
     name: 'Los Angeles',
-    quantity: 100,
+    quantity: 98,
     distance: 2000
   },
   {
@@ -85,7 +85,7 @@ export const data: DataRow[] = [
     date: new Date(2016, 2, 8).toLocaleDateString(),
     name: 'Vancouver',
     quantity: 2,
-    distance: 1500
+    distance: 10
   },
   {
     id: 13,
@@ -98,15 +98,15 @@ export const data: DataRow[] = [
     id: 14,
     date: new Date(2001, 1, 5).toLocaleDateString(),
     name: 'Washington DC',
-    quantity: 5,
+    quantity: 25,
     distance: 150
   },
   {
     id: 15,
     date: new Date(2013, 7, 21).toLocaleDateString(),
     name: 'Los Angeles',
-    quantity: 100,
-    distance: 2000
+    quantity: 75,
+    distance: 100
   },
 
   {
@@ -127,30 +127,30 @@ export const data: DataRow[] = [
     id: 18,
     date: new Date().toLocaleDateString(),
     name: 'New York',
-    quantity: 1,
-    distance: 1000
+    quantity: 4,
+    distance: 11000
   },
   {
     id: 19,
     date: new Date(2001, 1, 5).toLocaleDateString(),
     name: 'Washington DC',
-    quantity: 5,
+    quantity: 1,
     distance: 150
   },
   {
     id: 20,
     date: new Date(2013, 7, 21).toLocaleDateString(),
     name: 'Los Angeles',
-    quantity: 100,
-    distance: 2000
+    quantity: 1120,
+    distance: 750
   },
 
   {
     id: 21,
     date: new Date(2013, 7, 21).toLocaleDateString(),
     name: 'Los Angeles',
-    quantity: 100,
-    distance: 2000
+    quantity: 5600,
+    distance: 200
   },
   {
     id: 22,
@@ -163,30 +163,30 @@ export const data: DataRow[] = [
     id: 23,
     date: new Date().toLocaleDateString(),
     name: 'New York',
-    quantity: 1,
-    distance: 1000
+    quantity: 2,
+    distance: 2000
   },
   {
     id: 24,
     date: new Date(2001, 1, 5).toLocaleDateString(),
     name: 'Washington DC',
     quantity: 5,
-    distance: 150
+    distance: 1500
   },
   {
     id: 25,
     date: new Date(2001, 1, 5).toLocaleDateString(),
     name: 'Washington DC',
     quantity: 5,
-    distance: 150
+    distance: 1504
   },
 
   {
     id: 26,
     date: new Date(2016, 2, 8).toLocaleDateString(),
     name: 'Vancouver',
-    quantity: 2,
-    distance: 1500
+    quantity: 5,
+    distance: 1300
   },
   {
     id: 27,
@@ -199,8 +199,8 @@ export const data: DataRow[] = [
     id: 28,
     date: new Date(2016, 2, 8).toLocaleDateString(),
     name: 'Vancouver',
-    quantity: 2,
-    distance: 1500
+    quantity: 20,
+    distance: 1700
   },
   {
     id: 29,
@@ -213,8 +213,8 @@ export const data: DataRow[] = [
     id: 30,
     date: new Date().toLocaleDateString(),
     name: 'New York',
-    quantity: 1,
-    distance: 1000
+    quantity: 3,
+    distance: 4000
   },
 
   {
