@@ -2,6 +2,7 @@ import React from 'react'
 
 import { data } from './constants'
 import { Header } from './header'
+import { Paginator } from './paginator'
 import { Row } from './row'
 import { root } from './table.style'
 import { OrderBy } from './types'
@@ -24,6 +25,7 @@ export const Table: React.FC = () => {
       {data.map((x, index) => (
         <Row key={x.id} rowNumber={index + 1} data={x} />
       ))}
+      <Paginator />
     </section>
   )
 }

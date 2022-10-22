@@ -1,18 +1,14 @@
 import React from 'react'
 
-import { icon, root, rootHover, title } from './header-cell.style'
-import { OrderBy } from './types'
+import { icon, root, rootHover, title } from '../header/cell.style'
+import { OrderBy } from '../types'
 
-export interface HeaderCellProps {
+export interface CellProps {
   orderBy?: OrderBy
   children: React.ReactNode
   onOrderBy?(): void
 }
-export const HeaderCell: React.FC<HeaderCellProps> = ({
-  orderBy,
-  children,
-  onOrderBy
-}) => {
+export const Cell: React.FC<CellProps> = ({ orderBy, children, onOrderBy }) => {
   const [hover, setHover] = React.useState(false)
   const handleMouseEnter = () => setHover(true)
   const handleMouseLeave = () => setHover(false)

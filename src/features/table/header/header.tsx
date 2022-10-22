@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { HeaderCell } from './header-cell'
+import { OrderBy } from '../types'
+import { Cell } from './cell'
 import { root } from './header.style'
-import { OrderBy } from './types'
 
 export interface HeaderProps {
   orderByName?: OrderBy
@@ -22,15 +22,15 @@ export const Header: React.FC<HeaderProps> = ({
   onOrderByDistance
 }) => (
   <div style={root}>
-    <HeaderCell>Date and Time</HeaderCell>
-    <HeaderCell orderBy={orderByName} onOrderBy={onOrderByName}>
+    <Cell>Date and Time</Cell>
+    <Cell orderBy={orderByName} onOrderBy={onOrderByName}>
       Name
-    </HeaderCell>
-    <HeaderCell orderBy={orderByQuantity} onOrderBy={onOrderByQuantity}>
+    </Cell>
+    <Cell orderBy={orderByQuantity} onOrderBy={onOrderByQuantity}>
       Quantity
-    </HeaderCell>
-    <HeaderCell orderBy={orderByDistance} onOrderBy={onOrderByDistance}>
+    </Cell>
+    <Cell orderBy={orderByDistance} onOrderBy={onOrderByDistance}>
       Distance
-    </HeaderCell>
+    </Cell>
   </div>
 )

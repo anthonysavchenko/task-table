@@ -1,6 +1,6 @@
 import CSS from 'csstype'
 
-import { Color } from '../../constants'
+import { Color } from '../../../constants'
 
 export const root: CSS.Properties = {
   flex: 1,

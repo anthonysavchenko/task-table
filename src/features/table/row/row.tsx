@@ -1,6 +1,6 @@
+import { DataRow } from '../types'
 import { Cell } from './cell'
 import { odd, root } from './row.style'
-import { DataRow } from './types'
 
 export interface RowProps {
   rowNumber: number
