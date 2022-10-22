@@ -8,10 +8,20 @@ export const usePagination = (rows: DataRow[], rowsPerPage?: number) => {
 
   const [page, setPage] = React.useState(1)
 
-  const handlePageSelect = (page: number) => setPage(page)
-  const handleNextPage = () =>
-    setPage(prev => (page === pageQuantity ? prev : prev + 1))
-  const handlePrevPage = () => setPage(prev => (page === 1 ? prev : prev - 1))
+  const handlePageSelect = React.useCallback(
+    (page: number) => setPage(page),
+    []
+  )
+
+  const handleNextPage = React.useCallback(
+    () => setPage(prev => (page === pageQuantity ? prev : prev + 1)),
+    [page, pageQuantity]
+  )
+
+  const handlePrevPage = React.useCallback(
+    () => setPage(prev => (page === 1 ? prev : prev - 1)),
+    [page]
+  )
 
   const pageStart = (page - 1) * pageRowsQuantity
   const pageEnd = pageStart + pageRowsQuantity

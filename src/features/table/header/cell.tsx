@@ -9,20 +9,26 @@ export interface CellProps {
   children: React.ReactNode
   onOrderBy?(): void
 }
-export const Cell: React.FC<CellProps> = ({ orderBy, children, onOrderBy }) => {
-  const [hover, handleMouseEnter, handleMouseLeave] = useHover()
 
-  return (
-    <div
-      style={{ ...root, ...(hover && rootHover) }}
-      onClick={onOrderBy}
-      onMouseEnter={onOrderBy && handleMouseEnter}
-      onMouseLeave={onOrderBy && handleMouseLeave}
-    >
-      <div style={icon}>
-        {orderBy === 'ascending' ? '∧' : orderBy === 'descending' ? '∨' : ''}
+const Cell: React.FC<CellProps> = React.memo<CellProps>(
+  ({ orderBy, children, onOrderBy }: CellProps) => {
+    const [hover, handleMouseEnter, handleMouseLeave] = useHover()
+
+    return (
+      <div
+        style={{ ...root, ...(hover && rootHover) }}
+        onClick={onOrderBy}
+        onMouseEnter={onOrderBy && handleMouseEnter}
+        onMouseLeave={onOrderBy && handleMouseLeave}
+      >
+        <div style={icon}>
+          {orderBy === 'ascending' ? '∧' : orderBy === 'descending' ? '∨' : ''}
+        </div>
+        <div style={title}>{children}</div>
       </div>
-      <div style={title}>{children}</div>
-    </div>
-  )
-}
+    )
+  }
+)
+
+Cell.displayName = 'Cell'
+export { Cell }

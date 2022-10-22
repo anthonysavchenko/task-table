@@ -1,17 +1,40 @@
-import { DataRow } from '../types'
-import { sortAscending, sortDescending } from '../utils'
-import { useOrderBy } from './useOrderBy'
+import React from 'react'
+
+import { DataRow, OrderBy } from '../types'
+import { sortAscending, sortDescending, toggleOrderBy } from '../utils'
 
 export const useSorting = (rows: DataRow[]) => {
-  const clearOrderBy = () => {
-    clearOrderByName(), clearOrderByQuantity(), clearOrderByDistance()
-  }
-  const [orderByName, clearOrderByName, handleOrderByName] =
-    useOrderBy(clearOrderBy)
-  const [orderByQuantity, clearOrderByQuantity, handleOrderByQuantity] =
-    useOrderBy(clearOrderBy)
-  const [orderByDistance, clearOrderByDistance, handleOrderByDistance] =
-    useOrderBy(clearOrderBy)
+  const [orderByName, setOrderByName] = React.useState<OrderBy | undefined>()
+  const [orderByQuantity, setOrderByQuantity] = React.useState<
+    OrderBy | undefined
+  >()
+  const [orderByDistance, setOrderByDistance] = React.useState<
+    OrderBy | undefined
+  >()
+
+  const handleOrderByName = React.useCallback(() => {
+    if (!orderByName) {
+      setOrderByQuantity(undefined)
+      setOrderByDistance(undefined)
+    }
+    setOrderByName(prev => toggleOrderBy(prev))
+  }, [orderByName])
+
+  const handleOrderByQuantity = React.useCallback(() => {
+    if (!orderByQuantity) {
+      setOrderByName(undefined)
+      setOrderByDistance(undefined)
+    }
+    setOrderByQuantity(prev => toggleOrderBy(prev))
+  }, [orderByQuantity])
+
+  const handleOrderByDistance = React.useCallback(() => {
+    if (!orderByDistance) {
+      setOrderByName(undefined)
+      setOrderByQuantity(undefined)
+    }
+    setOrderByDistance(prev => toggleOrderBy(prev))
+  }, [orderByDistance])
 
   const sortedRows = orderByName
     ? rows

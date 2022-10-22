@@ -13,24 +13,29 @@ export interface HeaderProps {
   onOrderByDistance(): void
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  orderByName,
-  orderByQuantity,
-  orderByDistance,
-  onOrderByName,
-  onOrderByQuantity,
-  onOrderByDistance
-}) => (
-  <div style={root}>
-    <Cell>Date and Time</Cell>
-    <Cell orderBy={orderByName} onOrderBy={onOrderByName}>
-      Name
-    </Cell>
-    <Cell orderBy={orderByQuantity} onOrderBy={onOrderByQuantity}>
-      Quantity
-    </Cell>
-    <Cell orderBy={orderByDistance} onOrderBy={onOrderByDistance}>
-      Distance
-    </Cell>
-  </div>
+const Header: React.FC<HeaderProps> = React.memo<HeaderProps>(
+  ({
+    orderByName,
+    orderByQuantity,
+    orderByDistance,
+    onOrderByName,
+    onOrderByQuantity,
+    onOrderByDistance
+  }: HeaderProps) => (
+    <div style={root}>
+      <Cell>Date and Time</Cell>
+      <Cell orderBy={orderByName} onOrderBy={onOrderByName}>
+        Name
+      </Cell>
+      <Cell orderBy={orderByQuantity} onOrderBy={onOrderByQuantity}>
+        Quantity
+      </Cell>
+      <Cell orderBy={orderByDistance} onOrderBy={onOrderByDistance}>
+        Distance
+      </Cell>
+    </div>
+  )
 )
+
+Header.displayName = 'Header'
+export { Header }
