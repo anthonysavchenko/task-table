@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { useHover } from '../../../hooks'
 import { icon, root, rootHover, title } from '../header/cell.style'
 import { OrderBy } from '../types'
 
@@ -9,9 +10,7 @@ export interface CellProps {
   onOrderBy?(): void
 }
 export const Cell: React.FC<CellProps> = ({ orderBy, children, onOrderBy }) => {
-  const [hover, setHover] = React.useState(false)
-  const handleMouseEnter = () => setHover(true)
-  const handleMouseLeave = () => setHover(false)
+  const [hover, handleMouseEnter, handleMouseLeave] = useHover()
 
   return (
     <div

@@ -7,10 +7,23 @@ import { Row } from './row'
 import { root } from './table.style'
 import { OrderBy } from './types'
 
-export const Table: React.FC = () => {
+export interface TableProps {
+  rowsPerPage?: number
+}
+
+export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
   const [orderByName, handleOrderByName] = useOrderBy()
   const [orderByQuantity, handleOrderByQuantity] = useOrderBy()
   const [orderByDistance, handleOrderByDistance] = useOrderBy()
+
+  const pageQuantity = Math.ceil(
+    data.length / (rowsPerPage && rowsPerPage >= 1 ? rowsPerPage : 1)
+  )
+  const [page, setPage] = React.useState(1)
+  const handlePageClick = (page: number) => setPage(page)
+  const handleNextClick = () =>
+    setPage(prev => (page === pageQuantity ? prev : prev + 1))
+  const handlePrevClick = () => setPage(prev => (page === 1 ? prev : prev - 1))
 
   return (
     <section style={root}>
@@ -25,7 +38,13 @@ export const Table: React.FC = () => {
       {data.map((x, index) => (
         <Row key={x.id} rowNumber={index + 1} data={x} />
       ))}
-      <Paginator />
+      <Paginator
+        page={page}
+        pageQuantity={pageQuantity}
+        onPageClick={handlePageClick}
+        onNextClick={handleNextClick}
+        onPrevClick={handlePrevClick}
+      />
     </section>
   )
 }

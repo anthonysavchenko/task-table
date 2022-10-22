@@ -1,6 +1,6 @@
 export interface DataRow {
   id: number
-  date: number
+  date: string
   name: string
   quantity: number
   distance: number

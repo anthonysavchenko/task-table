@@ -5,7 +5,7 @@ import { Table } from './features/table'
 
 const App: React.FC = () => (
   <main style={root}>
-    <Table />
+    <Table rowsPerPage={5} />
   </main>
 )
 

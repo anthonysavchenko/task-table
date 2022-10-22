@@ -6,7 +6,8 @@ export const root: CSS.Properties = {
   flex: 1,
   padding: '12px 10px',
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  minWidth: 0
 }
 
 export const rootHover: CSS.Properties = {
