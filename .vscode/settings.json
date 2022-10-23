@@ -2,6 +2,7 @@
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "search.exclude": {
     "**/.vscode": true,
+    "**/.netlify": true,
     "**/node_modules": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
