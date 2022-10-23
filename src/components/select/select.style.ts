@@ -4,6 +4,7 @@ import { Color } from '../../constants'
 
 export const root: CSS.Properties = {
   flex: 1,
+  minWidth: 0,
   margin: '0 15px',
   position: 'relative'
 }

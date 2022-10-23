@@ -18,6 +18,7 @@ export const label: CSS.Properties = {
 export const valueInput: CSS.Properties = {
   flex: 1,
   height: '100%',
+  minWidth: 0,
   marginLeft: '15px',
   padding: '12px 10px',
 
