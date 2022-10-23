@@ -1,17 +1,32 @@
 import React from 'react'
 
 import { rows } from './constants'
+import { Filter } from './filter'
 import { Header } from './header'
-import { usePagination, useSorting } from './hooks'
+import { useFiltration, usePagination, useSorting } from './hooks'
 import { Paginator } from './paginator'
 import { Row } from './row'
 import { root } from './table.style'
 
 export interface TableProps {
   rowsPerPage?: number
+  pagesNearActive?: number
 }
 
-export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
+export const Table: React.FC<TableProps> = ({
+  rowsPerPage,
+  pagesNearActive
+}) => {
+  const [
+    filteredRows,
+    filterColumn,
+    filterOperator,
+    filterValue,
+    handleFilterColumnSelect,
+    handleFilterOperatorSelect,
+    handleFilterValueSelect
+  ] = useFiltration(rows)
+
   const [
     sortedRows,
     orderByName,
@@ -20,7 +35,7 @@ export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
     handleOrderByName,
     handleOrderByQuantity,
     handleOrderByDistance
-  ] = useSorting(rows)
+  ] = useSorting(filteredRows)
 
   const [
     page,
@@ -33,6 +48,14 @@ export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
 
   return (
     <section style={root}>
+      <Filter
+        column={filterColumn}
+        operator={filterOperator}
+        value={filterValue}
+        onColumnSelect={handleFilterColumnSelect}
+        onOperatorSelect={handleFilterOperatorSelect}
+        onValueChange={handleFilterValueSelect}
+      />
       <Header
         orderByName={orderByName}
         orderByQuantity={orderByQuantity}
@@ -47,6 +70,7 @@ export const Table: React.FC<TableProps> = ({ rowsPerPage }) => {
       <Paginator
         page={page}
         pageQuantity={pageQuantity}
+        pagesNearActive={pagesNearActive}
         onPageSelect={handlePageSelect}
         onNextPage={handleNextPage}
         onPrevPage={handlePrevPage}

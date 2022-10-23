@@ -6,6 +6,7 @@ import { root, separator } from './paginator.style'
 export interface PaginatorProps {
   page: number
   pageQuantity: number
+  pagesNearActive?: number
   onPageSelect(page: number): void
   onPrevPage(): void
   onNextPage(): void
@@ -15,21 +16,24 @@ const Paginator: React.FC<PaginatorProps> = React.memo<PaginatorProps>(
   ({
     page,
     pageQuantity,
+    pagesNearActive,
     onPageSelect,
     onPrevPage,
     onNextPage
   }: PaginatorProps) => {
     const pageButtons: React.ReactNode[] = []
-    const pagesNearActive = 2
+    const pagesNearActiveQuantity =
+      !pagesNearActive || pagesNearActive < 1 ? 0 : pagesNearActive
     let showDotsBefore = false
     let showDotsAfter = false
-    const dots = <span style={separator}>•••</span>
+    const Dots: React.FC = () => <div style={separator}>•••</div>
 
     for (let i = 1; i <= pageQuantity; i++) {
       if (
         i === 1 ||
         i === pageQuantity ||
-        (i >= page - pagesNearActive && i <= page + pagesNearActive)
+        (i >= page - pagesNearActiveQuantity &&
+          i <= page + pagesNearActiveQuantity)
       ) {
         pageButtons.push(
           <Button
@@ -42,10 +46,10 @@ const Paginator: React.FC<PaginatorProps> = React.memo<PaginatorProps>(
           </Button>
         )
       } else if (i < page && !showDotsBefore) {
-        pageButtons.push(dots)
+        pageButtons.push(<Dots key={'leftDots'} />)
         showDotsBefore = true
       } else if (i > page && !showDotsAfter) {
-        pageButtons.push(dots)
+        pageButtons.push(<Dots key={'rightDots'} />)
         showDotsAfter = true
       }
     }
