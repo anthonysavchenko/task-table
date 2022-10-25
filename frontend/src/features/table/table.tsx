@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { rows } from './constants'
 import { Filter } from './filter'
 import { Header } from './header'
 import { useFiltration, usePagination, useSorting } from './hooks'
+import { useRows } from './hooks/useRows'
 import { Paginator } from './paginator'
 import { Row } from './row'
 import { root } from './table.style'
@@ -17,6 +17,8 @@ export const Table: React.FC<TableProps> = ({
   rowsPerPage,
   pagesNearActive
 }) => {
+  const rows = useRows()
+
   const [
     filteredRows,
     filterColumn,

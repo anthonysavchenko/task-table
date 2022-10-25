@@ -1,0 +1,11 @@
+{
+  "name": "task-table",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd backend && npm run watch\" \"cd frontend && npm start\" "
+  },
+  "devDependencies": {
+    "concurrently": "^7.5.0"
+  }
+}
