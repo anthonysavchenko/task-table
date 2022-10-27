@@ -1,5 +1,7 @@
 import React from 'react'
 
+import axios from 'axios'
+
 import { DataRow } from '../types'
 
 export const useRows = () => {
@@ -11,6 +13,10 @@ export const useRows = () => {
 }
 
 const getServerData = async () =>
-  await fetch(process.env.REACT_APP_API_URL ?? '')
-    .then((response: Response) => response.json())
-    .then(json => json as DataRow[])
+  await axios
+    .get<DataRow[]>(process.env.REACT_APP_API_URL ?? '')
+    .then(response => response.data)
+    .catch(() => {
+      console.warn('Bad Response')
+      return [] as DataRow[]
+    })
