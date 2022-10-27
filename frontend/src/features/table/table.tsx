@@ -17,17 +17,16 @@ export const Table: React.FC<TableProps> = ({
   rowsPerPage,
   pagesNearActive
 }) => {
-  const rows = useRows()
-
   const [
-    filteredRows,
     filterColumn,
     filterOperator,
     filterValue,
     handleFilterColumnSelect,
     handleFilterOperatorSelect,
     handleFilterValueSelect
-  ] = useFiltration(rows)
+  ] = useFiltration()
+
+  const rows = useRows(filterColumn, filterOperator, filterValue)
 
   const [
     sortedRows,
@@ -37,7 +36,7 @@ export const Table: React.FC<TableProps> = ({
     handleOrderByName,
     handleOrderByQuantity,
     handleOrderByDistance
-  ] = useSorting(filteredRows)
+  ] = useSorting(rows)
 
   const [
     page,
