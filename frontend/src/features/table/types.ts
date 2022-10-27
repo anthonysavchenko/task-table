@@ -14,8 +14,8 @@ export enum FilterColumn {
 
 export enum FilterOperator {
   Equals = 'Equals',
-  LessThan = 'Less than',
-  GreaterThan = 'Greater than',
+  LessThan = 'Less Than',
+  GreaterThan = 'Greater Than',
   Containes = 'Contains'
 }
 

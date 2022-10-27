@@ -23,7 +23,7 @@ export const Table: React.FC<TableProps> = ({
     filterValue,
     handleFilterColumnSelect,
     handleFilterOperatorSelect,
-    handleFilterValueSelect
+    handleFilterValueChange
   ] = useFiltration()
 
   const rows = useRows(filterColumn, filterOperator, filterValue)
@@ -55,7 +55,7 @@ export const Table: React.FC<TableProps> = ({
         value={filterValue}
         onColumnSelect={handleFilterColumnSelect}
         onOperatorSelect={handleFilterOperatorSelect}
-        onValueChange={handleFilterValueSelect}
+        onValueChange={handleFilterValueChange}
       />
       <Header
         orderByName={orderByName}

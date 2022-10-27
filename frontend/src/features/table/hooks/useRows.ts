@@ -30,10 +30,17 @@ const getServerData = async (
 ) =>
   await axios
     .get<DataRow[]>(process.env.REACT_APP_API_URL ?? '', {
-      params: { filterColumn, filterOperator, filterValue }
+      params: {
+        filterColumn: prepareEnumQueryParam(filterColumn),
+        filterOperator: prepareEnumQueryParam(filterOperator),
+        filterValue: filterValue || undefined
+      }
     })
     .then(response => response.data)
     .catch(() => {
       console.warn('Bad Response')
       return [] as DataRow[]
     })
+
+const prepareEnumQueryParam = (param?: string) =>
+  param ? param.replace(' ', '') : undefined

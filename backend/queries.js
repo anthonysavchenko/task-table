@@ -8,9 +8,9 @@ const pool = new Pool({
 })
 
 const getRows = (request, response) => {
-  const filterColumn = request.query.filterColumn
-  const filterOperator = request.query.filterOperator
-  const filterValue = request.query.filterValue
+  const filterColumn = prepareQueryParam(request.query.filterColumn)
+  const filterOperator = prepareQueryParam(request.query.filterOperator)
+  const filterValue = prepareQueryParam(request.query.filterValue)
   const query = getQuery(filterColumn, filterOperator, filterValue)
 
   pool.query(query, (error, results) => {
@@ -23,6 +23,14 @@ const getRows = (request, response) => {
 
 module.exports = {
   getRows
+}
+
+const NO_SPECIAL_CHARS_REG_EX = /[^a-zA-Z0-9\s]/g
+
+const prepareQueryParam = param => {
+  if (param) {
+    return param.replace(NO_SPECIAL_CHARS_REG_EX, '') || undefined
+  }
 }
 
 const getQuery = (filterColumn, filterOperator, filterValue) => {
@@ -75,12 +83,12 @@ const getFilterSubstring = (filterColumn, filterOperator, filterValue) => {
 const getFilterColumnString = (filterColumn, filterOperator) => {
   switch (filterColumn) {
     case 'Name':
-      return filterColumn
+      return 'row_name'
     case 'Quantity':
     case 'Distance':
       return filterOperator === 'Contains'
-        ? `${filterColumn}::TEXT`
-        : filterColumn
+        ? `${filterColumn.toLowerCase()}::TEXT`
+        : filterColumn.toLowerCase()
   }
 }
 

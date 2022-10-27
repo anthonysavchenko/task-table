@@ -2,6 +2,8 @@ import React from 'react'
 
 import { FilterColumn, FilterOperator } from '../types'
 
+export const NO_SPECIAL_CHARS_REG_EX = /[^a-zA-Z0-9\s]/g
+
 export const useFiltration = () => {
   const [filterColumn, setFilterColumn] = React.useState<
     FilterColumn | undefined
@@ -19,8 +21,8 @@ export const useFiltration = () => {
     (x?: FilterOperator) => setFilterOperatior(x),
     []
   )
-  const handleFilterValueSelect = React.useCallback(
-    (x: string) => setFilterValue(x),
+  const handleFilterValueChange = React.useCallback(
+    (x: string) => setFilterValue(x.replace(NO_SPECIAL_CHARS_REG_EX, '')),
     []
   )
 
@@ -30,6 +32,6 @@ export const useFiltration = () => {
     filterValue,
     handleFilterColumnSelect,
     handleFilterOperatorSelect,
-    handleFilterValueSelect
+    handleFilterValueChange
   ] as const
 }
