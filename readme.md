@@ -34,7 +34,7 @@ Backend: https://task-table-service.onrender.com
 
 ## TODO:
 
-- Выполнять сортировку и пагинацию на бэкэнде
+- Выполнять пагинацию на бэкэнде
 
 - Использовать typescript на бэкэнде
 
