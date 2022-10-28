@@ -26,17 +26,23 @@ export const Table: React.FC<TableProps> = ({
     handleFilterValueChange
   ] = useFiltration()
 
-  const rows = useRows(filterColumn, filterOperator, filterValue)
-
   const [
-    sortedRows,
     orderByName,
     orderByQuantity,
     orderByDistance,
     handleOrderByName,
     handleOrderByQuantity,
     handleOrderByDistance
-  ] = useSorting(rows)
+  ] = useSorting()
+
+  const rows = useRows(
+    filterColumn,
+    filterOperator,
+    filterValue,
+    orderByName,
+    orderByQuantity,
+    orderByDistance
+  )
 
   const [
     page,
@@ -45,7 +51,7 @@ export const Table: React.FC<TableProps> = ({
     handlePageSelect,
     handleNextPage,
     handlePrevPage
-  ] = usePagination(sortedRows, rowsPerPage)
+  ] = usePagination(rows, rowsPerPage)
 
   return (
     <section style={root}>

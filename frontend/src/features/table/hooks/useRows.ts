@@ -2,12 +2,15 @@ import React from 'react'
 
 import axios from 'axios'
 
-import { DataRow, FilterColumn, FilterOperator } from '../types'
+import { DataRow, FilterColumn, FilterOperator, OrderBy } from '../types'
 
 export const useRows = (
   filterColumn?: FilterColumn,
   filterOperator?: FilterOperator,
-  filterValue?: string
+  filterValue?: string,
+  orderByName?: OrderBy,
+  orderByQuantity?: OrderBy,
+  orderByDistance?: OrderBy
 ) => {
   const [rows, setRows] = React.useState<DataRow[]>([])
 
@@ -15,9 +18,23 @@ export const useRows = (
     () =>
       void (async () =>
         setRows(
-          await getServerData(filterColumn, filterOperator, filterValue)
+          await getServerData(
+            filterColumn,
+            filterOperator,
+            filterValue,
+            orderByName,
+            orderByQuantity,
+            orderByDistance
+          )
         ))(),
-    [filterColumn, filterOperator, filterValue]
+    [
+      filterColumn,
+      filterOperator,
+      filterValue,
+      orderByName,
+      orderByQuantity,
+      orderByDistance
+    ]
   )
 
   return rows
@@ -26,14 +43,20 @@ export const useRows = (
 const getServerData = async (
   filterColumn?: FilterColumn,
   filterOperator?: FilterOperator,
-  filterValue?: string
+  filterValue?: string,
+  orderByName?: OrderBy,
+  orderByQuantity?: OrderBy,
+  orderByDistance?: OrderBy
 ) =>
   await axios
     .get<DataRow[]>(process.env.REACT_APP_API_URL ?? '', {
       params: {
         filterColumn: prepareEnumQueryParam(filterColumn),
         filterOperator: prepareEnumQueryParam(filterOperator),
-        filterValue: filterValue || undefined
+        filterValue: filterValue || undefined,
+        orderByName,
+        orderByQuantity,
+        orderByDistance
       }
     })
     .then(response => response.data)

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { DataRow, OrderBy } from '../types'
-import { sortAscending, sortDescending, toggleOrderBy } from '../utils'
+import { OrderBy } from '../types'
+import { toggleOrderBy } from '../utils'
 
-export const useSorting = (rows: DataRow[]) => {
+export const useSorting = () => {
   const [orderByName, setOrderByName] = React.useState<OrderBy | undefined>()
   const [orderByQuantity, setOrderByQuantity] = React.useState<
     OrderBy | undefined
@@ -36,34 +36,7 @@ export const useSorting = (rows: DataRow[]) => {
     setOrderByDistance(prev => toggleOrderBy(prev))
   }, [orderByDistance])
 
-  const sortedRows = orderByName
-    ? rows
-        .slice()
-        .sort((a, b) =>
-          orderByName === 'ascending'
-            ? sortAscending(a.name, b.name)
-            : sortDescending(a.name, b.name)
-        )
-    : orderByQuantity
-    ? rows
-        .slice()
-        .sort((a, b) =>
-          orderByQuantity === 'ascending'
-            ? sortAscending(a.quantity, b.quantity)
-            : sortDescending(a.quantity, b.quantity)
-        )
-    : orderByDistance
-    ? rows
-        .slice()
-        .sort((a, b) =>
-          orderByDistance === 'ascending'
-            ? sortAscending(a.distance, b.distance)
-            : sortDescending(a.distance, b.distance)
-        )
-    : rows
-
   return [
-    sortedRows,
     orderByName,
     orderByQuantity,
     orderByDistance,
